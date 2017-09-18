@@ -1,0 +1,14 @@
+runtime: java
+env: flex
+
+handlers:
+  - url: /.*
+    script: this field is required, but ignored
+
+runtime_config:
+   jdk: openjdk8
+env_variables:
+   SPRING_DATASOURCE_URL: 'jdbc:mysql://google/friedflix?cloudSqlInstance=spo-bfriedman:us-central1:friedflix-media-tracker&socketFactory=com.google.cloud.sql.mysql.SocketFactory'
+   SPRING_DATASOURCE_USERNAME: 'root'
+   SPRING_DATASOURCE_PASSWORD: 'password'
+
