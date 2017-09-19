@@ -1,0 +1,11 @@
+---
+applications:
+- name: friedflix-media-tracker
+  path: target/media-tracker-0.0.1.jar
+  buildpack: java_buildpack
+  services:
+  - friedflix-db 
+  env:
+    SPRING_DATASOURCE_URL: ${cloud.services.mysql.connection.uri}
+    SPRING_DATASOURCE_USERNAME: ${cloud.services.mysql.connection.username}
+    SPRING_DATASOURCE_PASSWORD: ${cloud.services.mysql.connection.password}
