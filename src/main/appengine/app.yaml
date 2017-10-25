@@ -5,10 +5,18 @@ handlers:
   - url: /.*
     script: this field is required, but ignored
 
+resources:
+  cpu: 2
+  memory_gb: 2.3
+  disk_size_gb: 10
+  volumes:
+  - name: ramdisk1
+    volume_type: tmpfs
+    size_gb: 0.5
+
 runtime_config:
    jdk: openjdk8
 env_variables:
    SPRING_DATASOURCE_URL: 'jdbc:mysql://google/friedflix?cloudSqlInstance=spo-bfriedman:us-central1:friedflix-media-tracker&socketFactory=com.google.cloud.sql.mysql.SocketFactory'
    SPRING_DATASOURCE_USERNAME: 'root'
    SPRING_DATASOURCE_PASSWORD: 'password'
-
