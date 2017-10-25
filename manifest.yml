@@ -3,5 +3,7 @@ applications:
 - name: friedflix-media-tracker
   path: target/media-tracker-0.0.1.jar
   buildpack: java_buildpack
+  health-check-type: http
+  health-check-http-endpoint: /health
   services:
   - friedflix-db
