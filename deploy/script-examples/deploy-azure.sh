@@ -17,7 +17,7 @@ az webapp config set --java-version 1.8 --java-container TOMCAT --java-container
 hostname=`az webapp deployment list-publishing-profiles --resource-group friedflix-media-tracker --name friedflix-media-tracker | grep ftp:// | awk '{print $2}' | sed -e 's/[",]//g' | sed -e 's/ftp:\/\///g' | sed -e 's/\/site\/wwwroot//g'`
 username=`az webapp deployment list-publishing-profiles --resource-group friedflix-media-tracker --name friedflix-media-tracker | grep userName | awk '{print $2}' | sed -e 's/[",$]//g' | head -1`
 password=`az webapp deployment list-publishing-profiles --resource-group friedflix-media-tracker --name friedflix-media-tracker | grep userPWD | awk '{print $2}' | sed -e 's/[",]//g' | head -1`
-ftp "ftp://${username}:${password}@${hostname}"
+ftp "ftp://${username}:${password}@${hostname}" <<SCRIPT
 cd site/wwwroot
 binary
 lcd target
@@ -26,6 +26,7 @@ ascii
 lcd ../deploy/manifests/azure
 put web.config
 quit
+SCRIPT
 
 # Create database instance
 az mysql server create -l westus -g friedflix-media-tracker -n friedflix-media-tracker -u dbuser -p DBpassword1 --performance-tier Basic --compute-units 100
